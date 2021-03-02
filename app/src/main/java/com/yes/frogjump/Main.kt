@@ -40,7 +40,7 @@ fun main() {
 
 fun processMinJumpNum(testCaseInfo: TestCaseInfo): Int {
     var jumpNum = 0
-    var currentCoordinate = 0
+    var currentFrogCoordinate = testCaseInfo.stoneCoordinates[0]   // 개구리는 항상 처음에는 0번 좌표에 있다
     var index = 1
 
     while (index < testCaseInfo.stoneCoordinates.size) {
@@ -50,17 +50,17 @@ fun processMinJumpNum(testCaseInfo: TestCaseInfo): Int {
             break
         }
 
-        val difference = testCaseInfo.stoneCoordinates[index] - currentCoordinate
+        val difference = testCaseInfo.stoneCoordinates[index] - currentFrogCoordinate
         when {
             // 최대 점프 거리와 같은 경우
             difference == testCaseInfo.maxJumpDistance -> {
-                currentCoordinate = testCaseInfo.stoneCoordinates[index]
+                currentFrogCoordinate = testCaseInfo.stoneCoordinates[index]
                 jumpNum++
             }
             // 최대 점프 거리보다 큰 경우
             difference > testCaseInfo.maxJumpDistance -> {
                 index--
-                currentCoordinate = testCaseInfo.stoneCoordinates[index]
+                currentFrogCoordinate = testCaseInfo.stoneCoordinates[index]
                 jumpNum++
             }
             // 잔여 점프
